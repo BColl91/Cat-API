@@ -1,5 +1,9 @@
 import './App.css'
 import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import order from "./pages/order"
+import orderconf from "./pages/ordercomf"
+import About from"./pages/About"
 
 const App = () => {
   const [allCats, setAllCats] = useState([]);
@@ -44,18 +48,20 @@ return (
   <nav>
     <Link to="/">Home</Link>
     <Link to="/About">About</Link>
-    <Link to="/Contact">Contact</Link>
   </nav>
   <h3 key ={index}>{cat}</h3>
+
   <Routes>
     <Route path="/" element={ <Home/> }></Route>
     <Route path="/About" element={ <About/> }></Route>
-    <Route path="/Contact" element={ <Contact/> }></Route>
-    <Route path="/:productName" element={ <Product/> }></Route>
+       <Route path="/:productName" element={ <Product/> }></Route>
   </Routes>
 
   <footer>
-    <h2>This is my footer</h2>
+  <Route path="/Contact" element={ <Contact/> }></Route>
+  <p>DISCLAIMER <br />
+  This is a mock site created by Sam.H, Chris.C and Bex.C using react.</p>
+  <h3>SOCIALS</h3>
   </footer>
 </BrowserRouter>
 )
