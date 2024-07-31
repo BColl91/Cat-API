@@ -18,7 +18,7 @@ const Home = ({ allCats, setBasketItems }) => {
           <div key={index} className="cat-item">
             <img src={cat.url} alt="cat" />
             <h3>Cat {index + 1}</h3>
-            <p>Price: $100</p>
+            <p>Price: £150</p>
             <button onClick={() => addToBasket(cat)}>Add to Basket</button>
           </div>
         ))}

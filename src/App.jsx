@@ -48,25 +48,28 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <h1>CATS FOR LIFE</h1>
-
+      <div className="header">
+        <h1>CATS FOR LIFE</h1>
+        <button className="basket-button" onClick={() => setShowBasket(!showBasket)}>
+          Basket ({basketItems.length})
+        </button>
+      </div>
+  
       {errorMsg && <p>{errorMsg}</p>}
-
+  
       <nav>
         <Link to="/">Home</Link>
         <Link to="/About">About</Link>
       </nav>
-
-      <button onClick={() => setShowBasket(!showBasket)}>Basket ({basketItems.length})</button>
-
+  
       {showBasket && <Basket basketItems={basketItems} setBasketItems={setBasketItems} closeBasket={() => setShowBasket(false)} />}
-
+  
       <Routes>
         <Route path="/" element={<Home allCats={allCats} setBasketItems={setBasketItems} />} />
         <Route path="/About" element={<About breedDescriptions={breedDescriptions} />} />
         <Route path="/:productName" element={<Product />} />
       </Routes>
-
+  
       <footer>
         <p>DISCLAIMER <br />
           This is a mock site created by Sam.H, Chris.C and Bex.C using react.</p>
@@ -77,15 +80,10 @@ const App = () => {
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
-        <div>
-          {/* <a href="https://github.com/SHilditch4177" target="_blank" rel="noopener noreferrer">Sam's GitHub</a>
-          <a href="https://github.com/ChrisCCodenation" target="_blank" rel="noopener noreferrer">Chris's GitHub</a>
-          <a href="https://github.com/BColl91" target="_blank" rel="noopener noreferrer">Bex's GitHub</a> */}
-        </div>
       </footer>
     </BrowserRouter>
-  )
-}
+  );
+  
 
 export default App
 

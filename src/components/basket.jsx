@@ -5,7 +5,7 @@ const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
   const totalPrice = basketItems.reduce((total, item) => total + item.price, 0);
 
   return (
-    <div className="basket-modal">
+    <div className={`basket-modal ${basketItems.length ? 'show' : ''}`}>
       <div className="basket-content">
         <button className="close-btn" onClick={closeBasket}>X</button>
         <h2>Basket</h2>
@@ -15,7 +15,7 @@ const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
           basketItems.map((item, index) => (
             <div key={index} className="basket-item">
               <h3>{item.name}</h3>
-              <p>Price: ${item.price}</p>
+              <p>Price: £{item.price}</p>
               <button onClick={() => {
                 const newBasketItems = basketItems.filter((_, i) => i !== index);
                 setBasketItems(newBasketItems);
@@ -23,7 +23,7 @@ const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
             </div>
           ))
         )}
-        <h3>Total: ${totalPrice}</h3>
+        <h3>Total: £{totalPrice}</h3>
       </div>
     </div>
   );
