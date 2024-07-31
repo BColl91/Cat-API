@@ -83,7 +83,5 @@ const App = () => {
       </footer>
     </BrowserRouter>
   );
-  
-
+}
 export default App
-
