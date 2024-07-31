@@ -11,20 +11,34 @@ const App = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [basketItems, setBasketItems] = useState([]);
   const [showBasket, setShowBasket] = useState(false);
+  const [breedDescriptions, setBreedDescriptions] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=10&api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P")
+      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=30&has_breeds=1&api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P")
 
       if (!response.ok) {
         throw new Error("There is a problem!")
       }
 
-      const catsData = await response.json()
-      setAllCats(catsData)
-      setErrorMsg("")
+      const catsData = await response.json();
+      setAllCats(catsData);
+
+      // Fetch breed descriptions
+      const breedsResponse = await fetch("https://api.thecatapi.com/v1/breeds?api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P");
+      if (!breedsResponse.ok) {
+        throw new Error("There is a problem fetching breeds!");
+      }
+
+      const breedsData = await breedsResponse.json();
+      setBreedDescriptions(breedsData.map(breed => ({
+        name: breed.name,
+        description: breed.description
+      })));
+
+      setErrorMsg("");
     } catch (error) {
-      setErrorMsg(error.message)
+      setErrorMsg(error.message);
     }
   }
 
@@ -49,7 +63,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home allCats={allCats} setBasketItems={setBasketItems} />} />
-        <Route path="/About" element={<About />} />
+        <Route path="/About" element={<About breedDescriptions={breedDescriptions} />} />
         <Route path="/:productName" element={<Product />} />
       </Routes>
 
@@ -74,3 +88,4 @@ const App = () => {
 }
 
 export default App
+
