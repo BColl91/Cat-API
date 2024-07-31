@@ -14,7 +14,7 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=30&api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P")
+      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=10&api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P")
 
       if (!response.ok) {
         throw new Error("There is a problem!")
