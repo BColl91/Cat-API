@@ -1,72 +1,70 @@
 import './App.css'
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import order from "./pages/order"
-import orderconf from "./pages/ordercomf"
-import About from"./pages/About"
+import About from "./pages/About"
+import Home from "./pages/Home"
+import Product from "./pages/Product"
+import Basket from './components/Basket'
 
 const App = () => {
   const [allCats, setAllCats] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
+  const [basketItems, setBasketItems] = useState([]);
+  const [showBasket, setShowBasket] = useState(false);
 
   const fetchData = async () => {
     try {
       const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=beng&api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P")
 
-      console.log(response)
-      if(!response.ok) {
+      if (!response.ok) {
         throw new Error("There is a problem!")
       }
 
       const catsData = await response.json()
-      setAllcats(catsData)
+      setAllCats(catsData)
       setErrorMsg("")
     } catch (error) {
-      console.log(error.message)
       setErrorMsg(error.message)
     }
-
   }
-  useEffect(() =>{
+
+  useEffect(() => {
     fetchData()
   }, [])
 
   return (
-    <>
+    <BrowserRouter>
       <h1>CATS 4 LYFE</h1>
 
-      {errorMsg !== "" && (
-        <p>{errorMsg}</p>
-      )}
+      {errorMsg && <p>{errorMsg}</p>}
 
-      {allcats.map((cat, index) =>{
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/About">About</Link>
+      </nav>
 
-return (
-  <BrowserRouter>
-  <h1>React Router</h1>
+      <button onClick={() => setShowBasket(!showBasket)}>Basket ({basketItems.length})</button>
 
-  <nav>
-    <Link to="/">Home</Link>
-    <Link to="/About">About</Link>
-  </nav>
-  <h3 key ={index}>{cat}</h3>
+      {showBasket && <Basket basketItems={basketItems} setBasketItems={setBasketItems} />}
 
-  <Routes>
-    <Route path="/" element={ <Home/> }></Route>
-    <Route path="/About" element={ <About/> }></Route>
-       <Route path="/:productName" element={ <Product/> }></Route>
-  </Routes>
+      <Routes>
+        <Route path="/" element={<Home allCats={allCats} setBasketItems={setBasketItems} />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/:productName" element={<Product />} />
+      </Routes>
 
-  <footer>
-  <Route path="/Contact" element={ <Contact/> }></Route>
-  <p>DISCLAIMER <br />
-  This is a mock site created by Sam.H, Chris.C and Bex.C using react.</p>
-  <h3>SOCIALS</h3>
-  </footer>
-</BrowserRouter>
-)
-      })}
-    </>
+      <footer>
+        <p>DISCLAIMER <br />
+          This is a mock site created by Sam.H, Chris.C and Bex.C using react.</p>
+        <h3>SOCIALS</h3>
+        <p>Contact us at: <a href="mailto:contact@cats4lyfe.com">contact@cats4lyfe.com</a></p>
+        <div>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </footer>
+    </BrowserRouter>
   )
 }
 
