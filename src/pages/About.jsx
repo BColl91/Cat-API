@@ -1,14 +1,10 @@
 import React from 'react';
 
-const About = ({ breedFacts }) => {
+const About = () => {
   return (
     <div>
       <h1>Meet The Cats~!</h1>
-      <ul>
-        {breedFacts.map((fact, index) => (
-          <li key={index}>{fact}</li>
-        ))}
-      </ul>
+      <p>Welcome to our site where you can learn about different cat breeds and adopt a cat!</p>
     </div>
   );
 }
