@@ -2,7 +2,7 @@ import './App.css'
 import { useState, useEffect } from 'react'
 
 const App = () => {
-  const [allFilms, setAllFilms] = useState([]);
+  const [allCats, setAllCats] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
 
   const fetchData = async () => {
@@ -11,11 +11,11 @@ const App = () => {
 
       console.log(response)
       if(!response.ok) {
-        throw new Error("What did you do")
+        throw new Error("There is a problem!")
       }
 
-      const filmsData = await response.json()
-      setAllFilms(filmsData)
+      const catsData = await response.json()
+      setAllcats(catsData)
       setErrorMsg("")
     } catch (error) {
       console.log(error.message)
@@ -29,16 +29,35 @@ const App = () => {
 
   return (
     <>
-      <h1>Fetch API</h1>
+      <h1>CATS 4 LYFE</h1>
 
       {errorMsg !== "" && (
         <p>{errorMsg}</p>
       )}
 
-      {allFilms.map((film, index) =>{
+      {allcats.map((cat, index) =>{
 
 return (
-  <h3 key ={index}>{film.original_title}</h3>
+  <BrowserRouter>
+  <h1>React Router</h1>
+
+  <nav>
+    <Link to="/">Home</Link>
+    <Link to="/About">About</Link>
+    <Link to="/Contact">Contact</Link>
+  </nav>
+  <h3 key ={index}>{cat}</h3>
+  <Routes>
+    <Route path="/" element={ <Home/> }></Route>
+    <Route path="/About" element={ <About/> }></Route>
+    <Route path="/Contact" element={ <Contact/> }></Route>
+    <Route path="/:productName" element={ <Product/> }></Route>
+  </Routes>
+
+  <footer>
+    <h2>This is my footer</h2>
+  </footer>
+</BrowserRouter>
 )
       })}
     </>
