@@ -11,10 +11,11 @@ const App = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [basketItems, setBasketItems] = useState([]);
   const [showBasket, setShowBasket] = useState(false);
+  const [breedFacts, setBreedFacts] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=beng&api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P")
+      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=100&api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P")
 
       if (!response.ok) {
         throw new Error("There is a problem!")
@@ -28,9 +29,25 @@ const App = () => {
     }
   }
 
+  const fetchBreedFacts = async (breed_id) => {
+    try {
+      const response = await fetch(`https://api.thecatapi.com/v1/v1/facts?limit=5&page=0&order=ASC&api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P`);
+
+      if (!response.ok) {
+        throw new Error("There is a problem fetching breed facts!");
+      }
+
+      const factsData = await response.json();
+      setBreedFacts(factsData);
+    } catch (error) {
+      setErrorMsg(error.message);
+    }
+  };
+
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+    fetchBreedFacts('beng'); // replace 'beng' with the desired breed_id or logic to fetch multiple breeds
+  }, []);
 
   return (
     <BrowserRouter>
@@ -45,11 +62,11 @@ const App = () => {
 
       <button onClick={() => setShowBasket(!showBasket)}>Basket ({basketItems.length})</button>
 
-      {showBasket && <Basket basketItems={basketItems} setBasketItems={setBasketItems} />}
+      {showBasket && <Basket basketItems={basketItems} setBasketItems={setBasketItems} closeBasket={() => setShowBasket(false)} />}
 
       <Routes>
         <Route path="/" element={<Home allCats={allCats} setBasketItems={setBasketItems} />} />
-        <Route path="/About" element={<About />} />
+        <Route path="/About" element={<About breedFacts={breedFacts} />} />
         <Route path="/:productName" element={<Product />} />
       </Routes>
 
@@ -62,6 +79,9 @@ const App = () => {
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          {/* <a href="LINK HERE" target="_blank" rel="noopener noreferrer">SAM GIT?</a>
+          <a href="LINK HERE" target="_blank" rel="noopener noreferrer">CHRIS GIT?</a>
+          <a href="https://github.com/BColl91" target="_blank" rel="noopener noreferrer">BEX GIT?</a> */}
         </div>
       </footer>
     </BrowserRouter>
