@@ -27,7 +27,7 @@ const App = () => {
       // Fetch breed descriptions
       const breedsResponse = await fetch("https://api.thecatapi.com/v1/breeds?api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P");
       if (!breedsResponse.ok) {
-        throw new Error("There is a problem fetching breeds!");
+        throw new Error("ERROR");
       }
 
       const breedsData = await breedsResponse.json();
