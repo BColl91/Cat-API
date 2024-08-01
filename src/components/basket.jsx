@@ -30,3 +30,5 @@ const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
 }
 
 export default Basket;
+const basketModal=styled.div
+const closeBtn=styled.button
