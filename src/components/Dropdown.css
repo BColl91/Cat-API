@@ -1,0 +1,41 @@
+.dropdown-container {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .dropdown-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .dropdown-container select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .breed-info {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .breed-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+  }
+  
+  .breed-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
