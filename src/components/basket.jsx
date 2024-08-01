@@ -14,8 +14,8 @@ const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
         ) : (
           basketItems.map((item, index) => (
             <div key={index} className="basket-item">
-              <h3>{item.name}</h3>
-              <p>Price: £{item.price}</p>
+              <h3>{cat.name}</h3>
+              <p>Price: £{cat.price}</p>
               <button onClick={() => {
                 const newBasketItems = basketItems.filter((_, i) => i !== index);
                 setBasketItems(newBasketItems);
