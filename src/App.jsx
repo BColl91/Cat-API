@@ -1,10 +1,18 @@
 import './App.css'
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { faker } from '@faker-js/faker'
+
 import About from "./pages/About"
 import Home from "./pages/Home"
 import Product from "./pages/Product"
 import Basket from './components/Basket'
+
+
+import facebookIcon from './images/facebook.png'
+import instagramIcon from './images/insta.png'
+import twitterIcon from './images/xIcon.png'
+import githubIcon from './images/github.png'
 
 const App = () => {
   const [allCats, setAllCats] = useState([]);
@@ -22,7 +30,11 @@ const App = () => {
       }
 
       const catsData = await response.json();
-      setAllCats(catsData);
+      setAllCats(catsData.map(cat =>({
+        ...cat,
+        name: faker.person.firstName(),
+        price: faker.finance.amount({ min: 50, max: 2000 })
+      })) );
 
       // Fetch breed descriptions
       const breedsResponse = await fetch("https://api.thecatapi.com/v1/breeds?api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P");
@@ -75,13 +87,25 @@ const App = () => {
           This is a mock site created by Sam.H, Chris.C and Bex.C using react.</p>
         <h3>SOCIALS</h3>
         <p>Contact us at: <a href="mailto:contact@cats4lyfe.com">contact@cats4lyfe.com</a></p>
-        <div>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-          {/* <a href="https://github.com/SHilditch4177" target="_blank" rel="noopener noreferrer">SAM GitHub (ARE YOU COOL WITH THIS LINK SAM??<3)</a>
-          <a href="https://github.com/ChrisCCodenation" target="_blank" rel="noopener noreferrer">CHRIS GitHub</a>
-          <a href="https://github.com/BColl91" target="_blank" rel="noopener noreferrer">BEX GitHub</a> */}
+        <div className="social-icons">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <img src={facebookIcon} alt="Facebook" />
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <img src={twitterIcon} alt="Twitter" />
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <img src={instagramIcon} alt="Instagram" />
+          </a>
+          <a href="https://github.com/SHilditch4177" target="_blank" rel="noopener noreferrer">
+            <img src={githubIcon} alt="Sam's GitHub" />
+          </a>
+          <a href="https://github.com/ChrisCCodenation" target="_blank" rel="noopener noreferrer">
+            <img src={githubIcon} alt="Chris's GitHub" />
+          </a>
+          <a href="https://github.com/BColl91" target="_blank" rel="noopener noreferrer">
+            <img src={githubIcon} alt="Bex's GitHub" />
+          </a>
         </div>
       </footer>
     </BrowserRouter>

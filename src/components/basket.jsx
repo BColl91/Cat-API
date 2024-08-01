@@ -4,31 +4,6 @@ import React from 'react';
 const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
   const totalPrice = basketItems.reduce((total, item) => total + item.price, 0);
 
-  fetch('https://fakestoreapi.com/products')
-  .then(res=>res.json())
-  .then(json=>console.log(json))
-
-  [
-    {
-        id:1,
-        title:'...',
-        price:'...',
-        category:'...',
-        description:'...',
-        image:'...'
-    },
-    /*...*/
-    {
-        id:30,
-        title:'...',
-        price:'...',
-        category:'...',
-        description:'...',
-        image:'...'
-    }
-]
-
-
   return (
     <div className={`basket-modal ${basketItems.length ? 'show' : ''}`}>
       <div className="basket-content">
@@ -55,5 +30,5 @@ const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
 }
 
 export default Basket;
-const basketModal=styled.div
-const closeBtn=styled.button
+// const basketModal=styled.div
+// const closeBtn=styled.button

@@ -17,8 +17,8 @@ const Home = ({ allCats, setBasketItems }) => {
         {allCats.map((cat, index) => (
           <div key={index} className="cat-item">
             <img src={cat.url} alt="cat" />
-            <h3>Cat {index + 1}</h3>
-            <p>Price: £150</p>
+            <h3>{cat.name}</h3>
+            <p>Price: {cat.price}</p>
             <button onClick={() => addToBasket(cat)}>Add to Basket</button>
           </div>
         ))}
