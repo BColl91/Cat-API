@@ -8,7 +8,6 @@ import Home from "./pages/Home"
 import Product from "./pages/Product"
 import Basket from './components/Basket'
 
-
 import facebookIcon from './images/facebook.png'
 import instagramIcon from './images/insta.png'
 import twitterIcon from './images/xIcon.png'
@@ -30,11 +29,11 @@ const App = () => {
       }
 
       const catsData = await response.json();
-      setAllCats(catsData.map(cat =>({
+      setAllCats(catsData.map(cat => ({
         ...cat,
         name: faker.person.firstName(),
-        price: faker.finance.amount({ min: 50, max: 2000 })
-      })) );
+        price: parseFloat(faker.finance.amount(50, 2000, 2))
+      })));
 
       // Fetch breed descriptions
       const breedsResponse = await fetch("https://api.thecatapi.com/v1/breeds?api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P");
@@ -66,22 +65,22 @@ const App = () => {
           Basket ({basketItems.length})
         </button>
       </div>
-  
+
       {errorMsg && <p>{errorMsg}</p>}
-  
+
       <nav>
         <Link to="/">Home</Link>
         <Link to="/About">About</Link>
       </nav>
-  
+
       {showBasket && <Basket basketItems={basketItems} setBasketItems={setBasketItems} closeBasket={() => setShowBasket(false)} />}
-  
+
       <Routes>
         <Route path="/" element={<Home allCats={allCats} setBasketItems={setBasketItems} />} />
         <Route path="/About" element={<About breedDescriptions={breedDescriptions} />} />
         <Route path="/:productName" element={<Product />} />
       </Routes>
-  
+
       <footer>
         <p>DISCLAIMER <br />
           This is a mock site created by Sam.H, Chris.C and Bex.C using react.</p>
@@ -111,4 +110,4 @@ const App = () => {
     </BrowserRouter>
   );
 }
-export default App
+export default App;

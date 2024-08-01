@@ -3,8 +3,8 @@ import React from 'react';
 const Home = ({ allCats, setBasketItems }) => {
   const addToBasket = (cat) => {
     const newCat = {
-      name: `Cat ${allCats.indexOf(cat) + 1}`,
-      price: 100,
+      name: cat.name,
+      price: cat.price,
       image: cat.url
     };
     setBasketItems(prevItems => [...prevItems, newCat]);
@@ -18,7 +18,7 @@ const Home = ({ allCats, setBasketItems }) => {
           <div key={index} className="cat-item">
             <img src={cat.url} alt="cat" />
             <h3>{cat.name}</h3>
-            <p>Price: {cat.price}</p>
+            <p>Price: £{cat.price}</p>
             <button onClick={() => addToBasket(cat)}>Add to Basket</button>
           </div>
         ))}
