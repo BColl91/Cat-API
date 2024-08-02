@@ -6,7 +6,7 @@ import { faker } from '@faker-js/faker'
 import About from "./pages/About"
 import Home from "./pages/Home"
 import Product from "./pages/Product"
-import Basket from './components/Basket'
+import Basket from "./components/Basket"
 
 import facebookIcon from './images/facebook.png'
 import instagramIcon from './images/insta.png'
