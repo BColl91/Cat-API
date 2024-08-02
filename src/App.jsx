@@ -5,6 +5,10 @@ import About from "./pages/About"
 import Home from "./pages/Home"
 import Product from "./pages/Product"
 import Basket from './components/Basket'
+import AboutCats from './pages/Aboutthecats'
+import style from 'style-component'
+import styled from 'styled-components'
+
 
 const App = () => {
   const [allCats, setAllCats] = useState([]);
@@ -48,43 +52,123 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="header">
-        <h1>CATS FOR LIFE</h1>
-        <button className="basket-button" onClick={() => setShowBasket(!showBasket)}>
-          Basket ({basketItems.length})
-        </button>
-      </div>
-  
-      {errorMsg && <p>{errorMsg}</p>}
-  
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/About">About</Link>
-      </nav>
-  
-      {showBasket && <Basket basketItems={basketItems} setBasketItems={setBasketItems} closeBasket={() => setShowBasket(false)} />}
-  
-      <Routes>
-        <Route path="/" element={<Home allCats={allCats} setBasketItems={setBasketItems} />} />
-        <Route path="/About" element={<About breedDescriptions={breedDescriptions} />} />
-        <Route path="/:productName" element={<Product />} />
-      </Routes>
-  
-      <footer>
-        <p>DISCLAIMER <br />
-          This is a mock site created by Sam.H, Chris.C and Bex.C using react.</p>
-        <h3>SOCIALS</h3>
-        <p>Contact us at: <a href="mailto:contact@cats4lyfe.com">contact@cats4lyfe.com</a></p>
-        <div>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-          {/* <a href="https://github.com/SHilditch4177" target="_blank" rel="noopener noreferrer">SAM GitHub (ARE YOU COOL WITH THIS LINK SAM??<3)</a>
-          <a href="https://github.com/ChrisCCodenation" target="_blank" rel="noopener noreferrer">CHRIS GitHub</a>
-          <a href="https://github.com/BColl91" target="_blank" rel="noopener noreferrer">BEX GitHub</a> */}
-        </div>
-      </footer>
+    <Body>
+      <BorderOne>
+       <BorderTwo>
+         <Topbar>
+           <Logo>
+            {/* image logo */}
+             <h1>CATS FOR LIFE</h1>
+           </Logo>
+            <Icon>
+              {/* images instead */}
+             <button onClick={() => setShowBasket(!showBasket)}>
+               Basket ({basketItems.length})
+            </button>
+
+            <nav>
+              {/* images */}
+            <Link to="/">Home</Link>
+            <Link to="/About">About</Link>
+            <Link to="/About-The-Cats">About Cats</Link>
+            </nav>
+           </Icon>
+         </Topbar>
+            <MiddleSection>
+               <Contents>
+                  <Routes>
+                   <Route path="/Home" element={<Home/>}/>
+                   <Route path="/About" element={<About breedDescriptions={breedDescriptions} />} />
+                   <Route path="/:productName" element={<Product />} />
+                   <Route path="/About-The-Cats" element={<AboutCats allCats={allCats} setBasketItems={setBasketItems}/>}/>
+                  </Routes>
+               </Contents>
+                  <KeepClear></KeepClear>
+            </MiddleSection>
+
+          {errorMsg && <p>{errorMsg}</p>}
+           {showBasket && <Basket basketItems={basketItems} setBasketItems={setBasketItems} closeBasket={() => setShowBasket(false)} />}
+
+         <footer>
+               <p>DISCLAIMER <br />
+                This is a mock site created by Sam.H, Chris.C and Bex.C using react.</p>
+                <Socials>
+                  <Wrapper>
+                <h3>SOCIALS</h3>
+                <p>Contact us at: <a href="mailto:contact@cats4lyfe.com">contact@cats4lyfe.com</a></p>
+                {/* images/icons */}
+               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+               {/* <a href="https://github.com/SHilditch4177" target="_blank" rel="noopener noreferrer">SAM GitHub (ARE YOU COOL WITH THIS LINK SAM??<3)</a>
+               <a href="https://github.com/ChrisCCodenation" target="_blank" rel="noopener noreferrer">CHRIS GitHub</a>
+               <a href="https://github.com/BColl91" target="_blank" rel="noopener noreferrer">BEX GitHub</a> */}
+               </Wrapper>
+             </Socials>
+          </footer>
+        </BorderTwo>
+      </BorderOne>
+     </Body>  
     </BrowserRouter>
+    
   );
 }
 export default App
+const Body=styled.body`
+/* border: purple solid ; */
+`;
+
+const BorderOne=styled.div`
+/* border: white solid; */
+background-color: #B29E84;
+border-radius: 30px;
+padding: 20px 20px 20px 20px;
+
+`;
+const BorderTwo=styled.div`
+border: blue solid;
+background-color :#3D3D3D ;
+border-radius: 30px;
+`;
+
+const Topbar= styled.div`
+border: black solid;
+display: flex;
+`;
+
+const Logo=styled.div`
+/* import-font */
+/* image background */
+border: red solid;
+margin-right: 380px;
+height: 100px;
+`;
+
+const Icon=styled.div`
+border: green solid;
+
+`;
+const MiddleSection=styled.div`
+display: flex;
+`;
+
+const Contents=styled.div`
+border: coral solid ;
+width: 90%;
+`;
+const KeepClear=styled.div`
+border: greenyellow solid;
+
+`;
+const Socials=styled.div`
+border: blue solid;
+
+`;
+
+// backgound image 
+const Wrapper=styled.div`
+border: red solid;
+width: 300px;
+`;
+
+
