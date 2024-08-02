@@ -3,44 +3,21 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { faker } from '@faker-js/faker';
 
-import About from "./pages/About"
-import Home from "./pages/Home"
-import Product from "./pages/Product"
-import Basket from './components/Basket'
-import AboutCats from './pages/Aboutthecats'
-import style from 'style-component'
-import styled from 'styled-components'
+import About from "./pages/About";
+import Home from "./pages/Home";
+import Product from "./pages/Product";
+import Basket from './components/Basket';
+import AboutCats from './pages/Aboutthecats';
+import styled from 'styled-components';
 
 import Dropdown1 from './components/Dropdown1';
-import Dropdown from './components/Dropdown';  
 
-import facebookIcon from './images/facebook.png'
-import instagramIcon from './images/insta.png'
-import twitterIcon from './images/xIcon.png'
-import githubIcon from './images/github.png'
-import phoneIcon from './images/phoneIcon.png'
-import emailIcon from './images/emailIcon.png'
-import basketIcon from './images/basketIcon.png'
-import dropdownIcon from './images/dropdownIcon.png'
-import homeIcon from './images/homeIcon.png'
-import logo from './images/logo.png'
-
-import basketContents from './images/basket-contents.png'
-import bigFlower from './images/big-flower.png'
-import bigFlower2 from './images/big-flower2.png'
-import checkoutBG from './images/checkoutBackground.png'
-import flowerMain from './images/flower main.png'
-import flowerMain2 from './images/flower main2.png'
-import flowerTitle from './images/flower title.png'
-import background from './images/image background.png'
-import board from './images/image board.png'
-import memo from './images/memo pad.png'
-import modalBackground from './images/modalBackground.png'
-import modalBackground2 from './images/modalBackground2.png'
-import socials from './images/socials.png'
-import titleBG from './images/title-background.png'
-
-
+import facebookIcon from './images/facebook.png';
+import instagramIcon from './images/insta.png';
+import twitterIcon from './images/xIcon.png';
+import githubIcon from './images/github.png';
+import phoneIcon from './images/phoneIcon.png';
+import emailIcon from './images/emailIcon.png';
 
 const App = () => {
   const [allCats, setAllCats] = useState([]);
@@ -61,13 +38,9 @@ const App = () => {
       setAllCats(catsData.map(cat => ({
         ...cat,
         name: faker.person.firstName(),
-
         price: faker.finance.amount({ min: 50, max: 2000 })
-
-        
       })));
 
-      
       const breedsResponse = await fetch("https://api.thecatapi.com/v1/breeds?api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P");
       if (!breedsResponse.ok) {
         throw new Error("ERROR");
@@ -89,164 +62,172 @@ const App = () => {
     fetchData();
   }, []);
 
-  
   const handleBreedSelect = (selectedBreed) => {
     console.log('Selected Breed:', selectedBreed);
-    
   };
 
   return (
     <BrowserRouter>
-    <Body>
-      <BorderOne>
-       <BorderTwo>
-         <Topbar>
-           <Logo>
-             <h1>CATS FOR LIFE</h1>
-           </Logo>
-            <Icon>
-              {/* images instead */}
-             <button onClick={() => setShowBasket(!showBasket)}>
-               Basket ({basketItems.length})
-            </button>
-            <div className="header">
-            <h1>CATS FOR LIFE</h1>
-            <div className="top-right">
-            <Dropdown1 />
-            </div>
-          <button className="basket-button" onClick={() => setShowBasket(!showBasket)}>
-          Basket ({basketItems.length})
-          </button>
-          </div>
-
-            <nav>
-              {/* images */}
-            <Link to="/">Home</Link>
-            <Link to="/About">About</Link>
-            <Link to="/About-The-Cats">About Cats</Link>
-            </nav>
-           </Icon>
-         </Topbar>
+      <Body>
+        <BorderOne>
+          <BorderTwo>
+            <Topbar>
+              <Logo>
+                <h1>CATS FOR LIFE</h1>
+              </Logo>
+              <Icon>
+                <button onClick={() => setShowBasket(!showBasket)}>
+                  Basket ({basketItems.length})
+                </button>
+                <div className="header">
+                  <h1>CATS FOR LIFE</h1>
+                  <div className="top-right">
+                    <Dropdown1 />
+                  </div>
+                  <button className="basket-button" onClick={() => setShowBasket(!showBasket)}>
+                    Basket ({basketItems.length})
+                  </button>
+                </div>
+                <nav>
+                  <Link to="/">Home</Link>
+                  <Link to="/About">About</Link>
+                  <Link to="/About-The-Cats">About Cats</Link>
+                </nav>
+              </Icon>
+            </Topbar>
             <MiddleSection>
-               <Contents>
-                  <Routes>
-                   <Route path="/Home" element={<Home/>}/>
-                   <Route path="/About" element={<About breedDescriptions={breedDescriptions} />} />
-                   <Route path="/:productName" element={<Product />} />
-                   <Route path="/About-The-Cats" element={<AboutCats allCats={allCats} setBasketItems={setBasketItems}/>}/>
-                  </Routes>
-               </Contents>
-                  <KeepClear></KeepClear>
+              <Contents>
+                <Routes>
+                  <Route path="/" element={<Home allCats={allCats} setBasketItems={setBasketItems} />} />
+                  <Route path="/About" element={<About breedDescriptions={breedDescriptions} />} />
+                  <Route path="/:productName" element={<Product />} />
+                  <Route path="/About-The-Cats" element={<AboutCats allCats={allCats} setBasketItems={setBasketItems} />} />
+                </Routes>
+              </Contents>
+              <KeepClear></KeepClear>
             </MiddleSection>
-
-          {errorMsg && <p>{errorMsg}</p>}
-           {showBasket && <Basket basketItems={basketItems} setBasketItems={setBasketItems} closeBasket={() => setShowBasket(false)} />}
-           {/* <Routes>
-            <Route
-            path="/"
-            element={
-              <>
-                <Home allCats={allCats} setBasketItems={setBasketItems} />
-             
-                <Dropdown breeds={breedDescriptions} onSelectBreed={handleBreedSelect} />
-              </>
-            }
-            />
-            <Route path="/About" element={<About breedDescriptions={breedDescriptions} />} />
-            <Route path="/:productName" element={<Product />} />
-            </Routes> */}
-
-         <footer>
-               <p>DISCLAIMER <br />
+            {errorMsg && <p>{errorMsg}</p>}
+            {showBasket && <Basket basketItems={basketItems} setBasketItems={setBasketItems} closeBasket={() => setShowBasket(false)} />}
+            <footer>
+              <p>DISCLAIMER <br />
                 This is a mock site created by Sam.H, Chris.C and Bex.C using react.</p>
-                <Socials>
-                  <Wrapper>
-                    <p><img src={emailIcon}/><a href="mailto:contact@cats4lyfe.com">contact@cats4lyfe.com</a></p>
-                    <p><img src={phoneIcon} />0151 123 1234</p>
-                    <div className="social-icons">
+              <Socials>
+                <Wrapper>
+                  <p><img src={emailIcon} alt="Email Icon" /><a href="mailto:contact@cats4lyfe.com">contact@cats4lyfe.com</a></p>
+                  <p><img src={phoneIcon} alt="Phone Icon" />0151 123 1234</p>
+                  <div className="social-icons">
                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                    <img src={facebookIcon} alt="Facebook" />
+                      <img src={facebookIcon} alt="Facebook" />
                     </a>
                     <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                   <img src={twitterIcon} alt="Twitter" />
-                   </a>
-                   <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                    <img src={instagramIcon} alt="Instagram" />
+                      <img src={twitterIcon} alt="Twitter" />
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                      <img src={instagramIcon} alt="Instagram" />
                     </a>
                     <a href="https://github.com/SHilditch4177" target="_blank" rel="noopener noreferrer">
-                    <img src={githubIcon} alt="Sam's GitHub" />
+                      <img src={githubIcon} alt="Sam's GitHub" />
                     </a>
                     <a href="https://github.com/ChrisCCodenation" target="_blank" rel="noopener noreferrer">
-                    <img src={githubIcon} alt="Chris's GitHub" />
+                      <img src={githubIcon} alt="Chris's GitHub" />
                     </a>
-                   <a href="https://github.com/BColl91" target="_blank" rel="noopener noreferrer">
-                   <img src={githubIcon} alt="Bex's GitHub" />
+                    <a href="https://github.com/BColl91" target="_blank" rel="noopener noreferrer">
+                      <img src={githubIcon} alt="Bex's GitHub" />
                     </a>
-                  </Wrapper>
-                </Socials>
-        </footer>
-        </BorderTwo>
-      </BorderOne>
-     </Body>  
+                  </div>
+                </Wrapper>
+              </Socials>
+            </footer>
+          </BorderTwo>
+        </BorderOne>
+      </Body>
     </BrowserRouter>
-    
   );
 }
 
-const Body=styled.body`
-/* border: purple solid ; */
+const Body = styled.div`
+  background-color: #B29E84;
+  border-radius: 30px;
+  padding: 20px;
 `;
 
-const BorderOne=styled.div`
-/* border: white solid; */
-background-color: #B29E84;
-border-radius: 30px;
-padding: 20px 20px 20px 20px;
-
-`;
-const BorderTwo=styled.div`
-border: blue solid;
-background-color :#3D3D3D ;
-border-radius: 30px;
+const BorderOne = styled.div`
+  background-color: #B29E84;
+  border-radius: 30px;
+  padding: 20px;
 `;
 
-const Topbar= styled.div`
-border: black solid;
-display: flex;
+const BorderTwo = styled.div`
+  background-color: #3D3D3D;
+  border-radius: 30px;
+  padding: 20px;
 `;
 
-const Logo=styled.div`
-background-image: ;
-border: red solid;
-margin-right: 380px;
-height: 100px;
+const Topbar = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
-const Icon=styled.div`
-border: green solid;
-
-`;
-const MiddleSection=styled.div`
-display: flex;
+const Logo = styled.div`
+  h1 {
+    color: white;
+  }
 `;
 
-const Contents=styled.div`
-border: coral solid ;
-width: 90%;
+const Icon = styled.div`
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .top-right {
+    display: flex;
+    align-items: center;
+  }
+  .basket-button {
+    margin-left: 20px;
+  }
+  nav {
+    display: flex;
+    gap: 20px;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
 `;
-const KeepClear=styled.div`
-border: greenyellow solid;
 
-`;
-const Socials=styled.div`
-border: blue solid;
-
+const MiddleSection = styled.div`
+  display: flex;
 `;
 
-// backgound image 
-const Wrapper=styled.div`
-border: red solid;
-width: 300px;
+const Contents = styled.div`
+  width: 90%;
+`;
+
+const KeepClear = styled.div`
+`;
+
+const Socials = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+
+const Wrapper = styled.div`
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .social-icons {
+    display: flex;
+    gap: 10px;
+  }
 `;
 
 export default App;
