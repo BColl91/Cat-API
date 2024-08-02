@@ -1,6 +1,8 @@
 import './App.css'
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { faker } from '@faker-js/faker'
+
 import About from "./pages/About"
 import Home from "./pages/Home"
 import Product from "./pages/Product"
@@ -8,6 +10,14 @@ import Basket from './components/Basket'
 import AboutCats from './pages/Aboutthecats'
 import style from 'style-component'
 import styled from 'styled-components'
+
+
+import facebookIcon from './images/facebook.png'
+import instagramIcon from './images/insta.png'
+import twitterIcon from './images/xIcon.png'
+import githubIcon from './images/github.png'
+import phoneIcon from './images/phoneIcon.png'
+import emailIcon from './images/emailIcon.png'
 
 
 const App = () => {
@@ -26,7 +36,11 @@ const App = () => {
       }
 
       const catsData = await response.json();
-      setAllCats(catsData);
+      setAllCats(catsData.map(cat => ({
+        ...cat,
+        name: faker.person.firstName(),
+        price: parseFloat(faker.finance.amount(50, 2000, 2))
+      })));
 
       // Fetch breed descriptions
       const breedsResponse = await fetch("https://api.thecatapi.com/v1/breeds?api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P");
