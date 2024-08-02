@@ -4,9 +4,9 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { faker } from '@faker-js/faker';
 import About from "./pages/About";
 import Home from "./pages/Home";
-import Product from "./pages/Product";
 import Basket from './components/Basket';
 import AboutCats from './pages/Aboutthecats';
+import AboutUs from './pages/AboutUs'
 import styled from 'styled-components';
 import Dropdown1 from './components/Dropdown1';
 import facebookIcon from './images/facebook.png';
@@ -96,8 +96,8 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<Home allCats={allCats} setBasketItems={setBasketItems} />} />
                   <Route path="/About" element={<About breedDescriptions={breedDescriptions} />} />
-                  <Route path="/:productName" element={<Product />} />
                   <Route path="/About-The-Cats" element={<AboutCats allCats={allCats} setBasketItems={setBasketItems} />} />
+                  <Route path="/aboutus" element={<AboutUs />} />
                 </Routes>
               </Contents>
               <KeepClear></KeepClear>
