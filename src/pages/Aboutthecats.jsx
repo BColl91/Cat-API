@@ -18,7 +18,6 @@ const AboutCats = ({ allCats, setBasketItems }) => {
           <Logo>
           <div className=''>
          <div className="">{/*logo image*/}</div>
-          <h2>Cat Products</h2>
           </div>
       </Logo>
       </Title>
@@ -34,7 +33,7 @@ const AboutCats = ({ allCats, setBasketItems }) => {
                              <p>{cat.name}</p>
                            </Title>  
                            <Price>
-                             <p>Price: {cat.price}</p>
+                             <p>Price: {cat.price}}</p>
                            </Price>
                            <Button>
                              <button onClick={() => addToBasket(cat)}>Add to Basket</button>
@@ -52,7 +51,7 @@ const AboutCats = ({ allCats, setBasketItems }) => {
 
 export default AboutCats;
  const Logo=styled.div`
- border: red solid;
+ /* border: red solid; */
  `;
 const CatList=styled.div`
 
@@ -61,7 +60,7 @@ width: 900px;
 `;
 const Grid=styled.div`
 margin-left: 30px;
-border: blue solid;
+/* border: blue solid; */
 display: grid;
 grid-template-columns: repeat(5, 1fr) ;
 grid-template-rows: (6,1fr);
@@ -70,7 +69,7 @@ grid-gap: 5px;
 
 const Container=styled.div`
 /* backgound image */
-border: gray solid;
+/* border: gray solid; */
 height: 220px;
 width: 160px;
 display: flex;
@@ -79,20 +78,20 @@ justify-content: center;
 `;
 const CatDiv=styled.div`
 
-border: black solid;
+/* border: black solid; */
 height:170px ;
 display: flex;
 flex-direction: column;
 
 
 img{
-    border:white solid;
+    /* border:white solid; */
     height: 100px;
 }
 `;
 
 const Bottom=styled.div`
-border: pink solid;
+/* border: pink solid; */
 
 
 `;
@@ -100,14 +99,14 @@ const Title =styled.div`
 /* border: red solid; */
 height: 20px;
 p{
-    border: red solid;
+    /* border: red solid; */
 }
 `;
 const Price =styled.div`
 /* border: blue solid; */
 height: 20px;
 p{
-    border:green solid;
+    /* border:green solid; */
 }
 `;
 const Button =styled.div`
