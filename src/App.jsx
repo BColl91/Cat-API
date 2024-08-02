@@ -2,16 +2,13 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { faker } from '@faker-js/faker';
-
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Basket from './components/Basket';
 import AboutCats from './pages/Aboutthecats';
 import styled from 'styled-components';
-
 import Dropdown1 from './components/Dropdown1';
-
 import facebookIcon from './images/facebook.png';
 import instagramIcon from './images/insta.png';
 import twitterIcon from './images/xIcon.png';
@@ -28,8 +25,7 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=30&has_breeds=1&api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P");
-
+      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=30&has_breeds=1&api_key=YOUR_API_KEY");
       if (!response.ok) {
         throw new Error("There is a problem!");
       }
@@ -41,7 +37,7 @@ const App = () => {
         price: faker.finance.amount({ min: 50, max: 2000 })
       })));
 
-      const breedsResponse = await fetch("https://api.thecatapi.com/v1/breeds?api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P");
+      const breedsResponse = await fetch("https://api.thecatapi.com/v1/breeds?api_key=YOUR_API_KEY");
       if (!breedsResponse.ok) {
         throw new Error("ERROR");
       }
@@ -209,25 +205,11 @@ const KeepClear = styled.div`
 `;
 
 const Socials = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
 `;
 
 const Wrapper = styled.div`
-  width: 300px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  p {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .social-icons {
-    display: flex;
-    gap: 10px;
-  }
+  justify-content: space-between;
 `;
 
 export default App;
