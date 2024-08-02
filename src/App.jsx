@@ -15,7 +15,7 @@ import twitterIcon from './images/xIcon.png';
 import githubIcon from './images/github.png';
 import phoneIcon from './images/phoneIcon.png';
 import emailIcon from './images/emailIcon.png';
-import basketIcon from './images/basketIcon.png'
+import basketIcon from './images/basketIcon.png';
 import dropdownIcon from './images/dropdownIcon.png';
 import homeIcon from './images/homeIcon.png';
 import logo from './images/logo.png';
@@ -87,7 +87,7 @@ const App = () => {
           <BorderTwo>
             <Topbar>
               <Logo>
-               <img src=".logo"></img> <h1>CATS FOR LIFE</h1>
+               <img src="logo"></img> <h1>CATS FOR LIFE</h1>
               </Logo>
               <Icon>
                 <button onClick={() => setShowBasket(!showBasket)}>
