@@ -12,6 +12,9 @@ import facebookIcon from './images/facebook.png'
 import instagramIcon from './images/insta.png'
 import twitterIcon from './images/xIcon.png'
 import githubIcon from './images/github.png'
+import phoneIcon from './images/phoneIcon.png'
+import emailIcon from './images/emailIcon.png'
+
 
 const App = () => {
   const [allCats, setAllCats] = useState([]);
@@ -85,7 +88,8 @@ const App = () => {
         <p>DISCLAIMER <br />
           This is a mock site created by Sam.H, Chris.C and Bex.C using react.</p>
         <h3>SOCIALS</h3>
-        <p>Contact us at: <a href="mailto:contact@cats4lyfe.com">contact@cats4lyfe.com</a></p>
+        <p><img src={emailIcon}/><a href="mailto:contact@cats4lyfe.com">contact@cats4lyfe.com</a></p>
+        <p><img src={phoneIcon} />0151 123 1234</p>
         <div className="social-icons">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
             <img src={facebookIcon} alt="Facebook" />

@@ -10,7 +10,7 @@ const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
         <button className="close-btn" onClick={closeBasket}>X</button>
         <h2>Basket</h2>
         {basketItems.length === 0 ? (
-          <p>Your basket is empty</p>
+          <p>Your carrier is empty</p>
         ) : (
 
           basketItems.map((cat, index) => (
@@ -20,7 +20,7 @@ const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
               <button onClick={() => {
                 const newBasketItems = basketItems.filter((_, i) => i !== index);
                 setBasketItems(newBasketItems);
-              }}>Remove</button>
+              }}>Remove Cat</button>
             </div>
           ))
         )}
