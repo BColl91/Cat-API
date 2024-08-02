@@ -3,6 +3,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    border: red solid;
+    justify-self  : right;
+    justify-content: center;
+    
+    
   }
   
   .dropdown-container label {

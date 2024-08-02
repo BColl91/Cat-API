@@ -11,6 +11,7 @@ const Dropdown = ({ breeds, onSelectBreed }) => {
   };
 
   return (
+    
     <div className="dropdown-container">
       <label htmlFor="breed-select">Select a Breed:</label>
       <select id="breed-select" value={selectedOption} onChange={handleSelectChange}>

@@ -7,6 +7,8 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Basket from './components/Basket';
+
+import Dropdown1 from './components/Dropdown1';
 import Dropdown from './components/Dropdown';  
 
 import facebookIcon from './images/facebook.png';
@@ -68,6 +70,9 @@ const App = () => {
     <BrowserRouter>
       <div className="header">
         <h1>CATS FOR LIFE</h1>
+        <div className="top-right">
+          <Dropdown1 />
+        </div>
         <button className="basket-button" onClick={() => setShowBasket(!showBasket)}>
           Basket ({basketItems.length})
         </button>
