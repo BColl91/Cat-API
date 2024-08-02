@@ -1,30 +1,21 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const Home = ({ allCats, setBasketItems }) => {
-  const addToBasket = (cat) => {
-    const newCat = {
-      name: cat.name,
-      price: cat.price,
-      image: cat.url
-    };
-    setBasketItems(prevItems => [...prevItems, newCat]);
-  };
-
+const Home = () => {
   return (
-    <div>
-      <h2>Cat Products</h2>
-      <div className="cat-list">
-        {allCats.map((cat, index) => (
-          <div key={index} className="cat-item">
-            <img src={cat.url} alt="cat" />
-            <h3>{cat.name}</h3>
-            <p>Price: £{cat.price}</p>
-            <button onClick={() => addToBasket(cat)}>Add to Basket</button>
-          </div>
-        ))}
-      </div>
-    </div>
+    <>
+      <HomePage>
+       <div>{/*images of the cats*/} </div>
+       <div>{/*images of the cats*/} </div>
+       <div>{/*images of the cats*/} </div>
+      </HomePage>  
+    </>
+
   )
 }
 
 export default Home;
+
+const HomePage=styled.div`
+border: red solid;`;
+// add backgound to the imges div and edit it with thegrid andf transform and tilt the Y  
