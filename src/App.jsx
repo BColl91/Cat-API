@@ -6,7 +6,6 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import Basket from './components/Basket';
 import AboutCats from './pages/Aboutthecats';
-import AboutUs from './pages/AboutUs'
 import styled from 'styled-components';
 import Dropdown1 from './components/Dropdown1';
 import facebookIcon from './images/facebook.png';

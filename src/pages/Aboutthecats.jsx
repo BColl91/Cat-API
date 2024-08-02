@@ -31,10 +31,10 @@ const AboutCats = ({ allCats, setBasketItems }) => {
                     <img src={cat.url} alt="cat"/>
                        <Bottom>
                            <Title>  
-                             <p>Cat {index + 1}</p>
+                             <p>{cat.name}</p>
                            </Title>  
                            <Price>
-                             <p>Price: £150</p>
+                             <p>Price: {cat.price}</p>
                            </Price>
                            <Button>
                              <button onClick={() => addToBasket(cat)}>Add to Basket</button>
@@ -46,6 +46,7 @@ const AboutCats = ({ allCats, setBasketItems }) => {
             </Grid> 
         </CatList>
     </div>
+    
   )
 }
 
