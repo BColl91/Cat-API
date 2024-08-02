@@ -8,13 +8,36 @@ import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Basket from './components/Basket';
 
+
 import Dropdown1 from './components/Dropdown1';
 import Dropdown from './components/Dropdown';  
 
-import facebookIcon from './images/facebook.png';
-import instagramIcon from './images/insta.png';
-import twitterIcon from './images/xIcon.png';
-import githubIcon from './images/github.png';
+import facebookIcon from './images/facebook.png'
+import instagramIcon from './images/insta.png'
+import twitterIcon from './images/xIcon.png'
+import githubIcon from './images/github.png'
+import phoneIcon from './images/phoneIcon.png'
+import emailIcon from './images/emailIcon.png'
+import basketIcon from './images/basketIcon.png'
+import dropdownIcon from './images/dropdownIcon.png'
+import homeIcon from './images/homeIcon.png'
+import logo from './images/logo.png'
+
+import basketContents from './images/basket-contents.png'
+import bigFlower from './images/big-flower.png'
+import bigFlower2 from './images/big-flower2.png'
+import checkoutBG from './images/checkoutBackground.png'
+import flowerMain from './images/flower main.png'
+import flowerMain2 from './images/flower main2.png'
+import flowerTitle from './images/flower title.png'
+import background from './images/image background.png'
+import board from './images/image board.png'
+import memo from './images/memo pad.png'
+import modalBackground from './images/modalBackground.png'
+import modalBackground2 from './images/modalBackground2.png'
+import socials from './images/socials.png'
+import titleBG from './images/title-background.png'
+
 
 const App = () => {
   const [allCats, setAllCats] = useState([]);
@@ -35,7 +58,10 @@ const App = () => {
       setAllCats(catsData.map(cat => ({
         ...cat,
         name: faker.person.firstName(),
+
         price: faker.finance.amount({ min: 50, max: 2000 })
+
+        
       })));
 
       
@@ -106,7 +132,8 @@ const App = () => {
         <p>DISCLAIMER <br />
           This is a mock site created by Sam.H, Chris.C and Bex.C using react.</p>
         <h3>SOCIALS</h3>
-        <p>Contact us at: <a href="mailto:contact@cats4lyfe.com">contact@cats4lyfe.com</a></p>
+        <p><img src={emailIcon}/><a href="mailto:contact@cats4lyfe.com">contact@cats4lyfe.com</a></p>
+        <p><img src={phoneIcon} />0151 123 1234</p>
         <div className="social-icons">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
             <img src={facebookIcon} alt="Facebook" />

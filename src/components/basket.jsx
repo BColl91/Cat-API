@@ -10,16 +10,17 @@ const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
         <button className="close-btn" onClick={closeBasket}>X</button>
         <h2>Basket</h2>
         {basketItems.length === 0 ? (
-          <p>Your basket is empty</p>
+          <p>Your carrier is empty</p>
         ) : (
-          basketItems.map((item, index) => (
+
+          basketItems.map((cat, index) => (
             <div key={index} className="basket-item">
-              <h3>{item.name}</h3>
-              <p>Price: £{item.price}</p>
+              <h3>{cat.name}</h3>
+              <p>Price: £{cat.price}</p>
               <button onClick={() => {
                 const newBasketItems = basketItems.filter((_, i) => i !== index);
                 setBasketItems(newBasketItems);
-              }}>Remove</button>
+              }}>Remove Cat</button>
             </div>
           ))
         )}
@@ -30,5 +31,3 @@ const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
 }
 
 export default Basket;
-// const basketModal=styled.div
-// const closeBtn=styled.button
