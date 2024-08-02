@@ -15,6 +15,24 @@ import twitterIcon from './images/xIcon.png';
 import githubIcon from './images/github.png';
 import phoneIcon from './images/phoneIcon.png';
 import emailIcon from './images/emailIcon.png';
+import basketIcon from './images/basketIcon.png'
+import dropdownIcon from './images/dropdownIcon.png';
+import homeIcon from './images/homeIcon.png';
+import logo from './images/logo.png';
+import basketContents from './images/basket-contents.png';
+import bigFlower from './images/big-flower.png';
+import bigFlower2 from './images/big-flower2.png';
+import checkoutBG from './images/checkoutBackground.png';
+import flowerMain from './images/flower main.png';
+import flowerMain2 from './images/flower main2.png';
+import flowerTitle from './images/flower title.png';
+import background from './images/image background.png';
+import board from './images/image board.png';
+import memo from './images/memo pad.png';
+import modalBackground from './images/modalBackground.png';
+import modalBackground2 from './images/modalBackground2.png';
+import socials from './images/socials.png';
+import titleBG from './images/title-background.png';
 
 const App = () => {
   const [allCats, setAllCats] = useState([]);
@@ -69,7 +87,7 @@ const App = () => {
           <BorderTwo>
             <Topbar>
               <Logo>
-                <h1>CATS FOR LIFE</h1>
+               <img src=".logo"></img> <h1>CATS FOR LIFE</h1>
               </Logo>
               <Icon>
                 <button onClick={() => setShowBasket(!showBasket)}>
