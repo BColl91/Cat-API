@@ -20,6 +20,7 @@ import phoneIcon from './images/phoneIcon.png'
 import emailIcon from './images/emailIcon.png'
 
 
+
 const App = () => {
   const [allCats, setAllCats] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
@@ -71,7 +72,6 @@ const App = () => {
        <BorderTwo>
          <Topbar>
            <Logo>
-            {/* image logo */}
              <h1>CATS FOR LIFE</h1>
            </Logo>
             <Icon>
@@ -151,8 +151,7 @@ display: flex;
 `;
 
 const Logo=styled.div`
-/* import-font */
-/* image background */
+background-image: ;
 border: red solid;
 margin-right: 380px;
 height: 100px;
