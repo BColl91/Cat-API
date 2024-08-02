@@ -1,12 +1,16 @@
-import './App.css'
-import { useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import { faker } from '@faker-js/faker'
+import './App.css';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { faker } from '@faker-js/faker';
 
-import About from "./pages/About"
-import Home from "./pages/Home"
-import Product from "./pages/Product"
-import Basket from "./components/Basket"
+import About from "./pages/About";
+import Home from "./pages/Home";
+import Product from "./pages/Product";
+import Basket from './components/Basket';
+
+
+import Dropdown1 from './components/Dropdown1';
+import Dropdown from './components/Dropdown';  
 
 import facebookIcon from './images/facebook.png'
 import instagramIcon from './images/insta.png'
@@ -44,20 +48,23 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=30&has_breeds=1&api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P")
+      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=30&has_breeds=1&api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P");
 
       if (!response.ok) {
-        throw new Error("There is a problem!")
+        throw new Error("There is a problem!");
       }
 
       const catsData = await response.json();
       setAllCats(catsData.map(cat => ({
         ...cat,
         name: faker.person.firstName(),
-        price: parseFloat(faker.finance.amount(50, 2000, 2))
+
+        price: faker.finance.amount({ min: 50, max: 2000 })
+
+        
       })));
 
-      // Fetch breed descriptions
+      
       const breedsResponse = await fetch("https://api.thecatapi.com/v1/breeds?api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P");
       if (!breedsResponse.ok) {
         throw new Error("ERROR");
@@ -73,16 +80,25 @@ const App = () => {
     } catch (error) {
       setErrorMsg(error.message);
     }
-  }
+  };
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  
+  const handleBreedSelect = (selectedBreed) => {
+    console.log('Selected Breed:', selectedBreed);
+    
+  };
+
   return (
     <BrowserRouter>
       <div className="header">
         <h1>CATS FOR LIFE</h1>
+        <div className="top-right">
+          <Dropdown1 />
+        </div>
         <button className="basket-button" onClick={() => setShowBasket(!showBasket)}>
           Basket ({basketItems.length})
         </button>
@@ -98,7 +114,16 @@ const App = () => {
       {showBasket && <Basket basketItems={basketItems} setBasketItems={setBasketItems} closeBasket={() => setShowBasket(false)} />}
 
       <Routes>
-        <Route path="/" element={<Home allCats={allCats} setBasketItems={setBasketItems} />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Home allCats={allCats} setBasketItems={setBasketItems} />
+             
+              <Dropdown breeds={breedDescriptions} onSelectBreed={handleBreedSelect} />
+            </>
+          }
+        />
         <Route path="/About" element={<About breedDescriptions={breedDescriptions} />} />
         <Route path="/:productName" element={<Product />} />
       </Routes>
@@ -133,4 +158,5 @@ const App = () => {
     </BrowserRouter>
   );
 }
+
 export default App;
