@@ -33,7 +33,7 @@ const AboutCats = ({ allCats, setBasketItems }) => {
                              <p>{cat.name}</p>
                            </Title>  
                            <Price>
-                             <p>Price: {cat.price}}</p>
+                             <p>Price: {cat.price}</p>
                            </Price>
                            <Button>
                              <button onClick={() => addToBasket(cat)}>Add to Basket</button>
