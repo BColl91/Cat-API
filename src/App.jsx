@@ -114,7 +114,6 @@ const App = () => {
                   <Route path="/" element={<Home allCats={allCats} setBasketItems={setBasketItems} />} />
                   <Route path="/About" element={<About breedDescriptions={breedDescriptions} />} />
                   <Route path="/About-The-Cats" element={<AboutCats allCats={allCats} setBasketItems={setBasketItems} />} />
-                  {/* <Route path="/aboutus" element={<AboutUs />} /> */}
                 </Routes>
               </Contents>
               <KeepClear></KeepClear>

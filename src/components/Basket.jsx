@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
-  const totalPrice = basketItems.reduce((total, item) => total + item.price, 0);
+  const totalPrice = basketItems.reduce((total, item) => total + parseFloat(item.price), 0);
 
   return (
     <BasketModal className={`basket ${basketItems.length ? 'show' : ''}`}>
@@ -14,16 +14,19 @@ const Basket = ({ basketItems, setBasketItems, closeBasket }) => {
         ) : (
           basketItems.map((item, index) => (
             <BasketItem key={index}>
-              <Products>{item.name}</Products>
-              <p>Price: £{item.price}</p>
-              <button onClick={() => {
-                const newBasketItems = basketItems.filter((_, i) => i !== index);
-                setBasketItems(newBasketItems);
-              }}>Remove</button>
+              <CatImage src={item.url} alt={item.name} />
+              <Products>
+                <p>{item.name}</p>
+                <p>Price: £{item.price}</p>
+                <button onClick={() => {
+                  const newBasketItems = basketItems.filter((_, i) => i !== index);
+                  setBasketItems(newBasketItems);
+                }}>Remove</button>
+              </Products>
             </BasketItem>
           ))
         )}
-        <h3>Total: £{totalPrice}</h3>
+        <h3>Total: £{totalPrice.toFixed(2)}</h3>
       </BasketContents>
     </BasketModal>
   );
@@ -37,7 +40,7 @@ const BasketModal = styled.div`
   right: 0;
   width: 300px;
   height: 100%;
-  background-color: white;
+  background-color: #040404d6;
   box-shadow: -2px 0 5px rgba(0,0,0,0.5);
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
@@ -73,13 +76,20 @@ const BaseText = styled.div`
 `;
 
 const BasketItem = styled.div`
+  display: flex;
+  align-items: center;
   border-bottom: 1px solid #ccc;
   padding: 0.5rem 0;
 `;
 
 const Products = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
+  flex-grow: 1;
+  padding: 0 1rem;
+`;
+
+const CatImage = styled.img`
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
 `;

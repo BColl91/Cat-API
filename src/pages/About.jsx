@@ -4,7 +4,7 @@ const About = ({ breedDescriptions }) => {
   return (
     <div>
       {/* div */}
-      <h1>About Cats</h1>
+      <h1>About the Different Breeds</h1>
       {/* div and add the list conponent */}
       <ul>
         {breedDescriptions.map((breed, index) => (
