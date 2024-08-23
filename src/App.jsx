@@ -5,7 +5,6 @@ import { faker } from '@faker-js/faker';
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Basket from './components/Basket';
-import AboutCats from './pages/Aboutthecats';
 import styled from 'styled-components';
 import Dropdown1 from './components/Dropdown1';
 import facebookIcon from './images/facebook.png';
@@ -104,7 +103,6 @@ const App = () => {
                 <nav>
                   <Link to="/">Home</Link>
                   <Link to="/About">About</Link>
-                  <Link to="/About-The-Cats">About Cats</Link>
                 </nav>
               </Icon>
             </Topbar>
@@ -113,7 +111,6 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<Home allCats={allCats} setBasketItems={setBasketItems} />} />
                   <Route path="/About" element={<About breedDescriptions={breedDescriptions} />} />
-                  <Route path="/About-The-Cats" element={<AboutCats allCats={allCats} setBasketItems={setBasketItems} />} />
                 </Routes>
               </Contents>
               <KeepClear></KeepClear>
@@ -170,7 +167,7 @@ const BorderOne = styled.div`
 `;
 
 const BorderTwo = styled.div`
-  background-color: #3D3D3D;
+  background-color: #7c6f5ef0;
   border-radius: 30px;
   padding: 20px;
 `;
@@ -203,7 +200,7 @@ const Icon = styled.div`
     display: flex;
     gap: 20px;
     a {
-      color: white;
+      color: #f1daa7;
       text-decoration: none;
     }
   }
