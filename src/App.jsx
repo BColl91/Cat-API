@@ -41,7 +41,7 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=30&has_breeds=1&api_key=YOUR_API_KEY");
+      const response = await fetch("https://api.thecatapi.com/v1/images/search?limit=30&has_breeds=1&api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P");
       if (!response.ok) {
         throw new Error("There is a problem!");
       }
@@ -53,7 +53,7 @@ const App = () => {
         price: faker.finance.amount({ min: 50, max: 2000 })
       })));
 
-      const breedsResponse = await fetch("https://api.thecatapi.com/v1/breeds?api_key=YOUR_API_KEY");
+      const breedsResponse = await fetch("https://api.thecatapi.com/v1/breeds?api_key=live_DO94hgpUSYCxmgPfdoEM2Nj1K298EsCtTLVewqoH4mxkpvZi5NLOKVHORPcqm64P");
       if (!breedsResponse.ok) {
         throw new Error("ERROR");
       }
@@ -192,6 +192,7 @@ const Icon = styled.div`
   .top-right {
     display: flex;
     align-items: center;
+    border: solid greenyellow;
   }
   .basket-button {
     margin-left: 20px;
@@ -208,10 +209,12 @@ const Icon = styled.div`
 
 const MiddleSection = styled.div`
   display: flex;
+  color: #ffffff;
 `;
 
 const Contents = styled.div`
   width: 90%;
+  border: solid greenyellow;
 `;
 
 const KeepClear = styled.div`

@@ -1,0 +1,59 @@
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios'; // Assuming you're using Axios for API calls
+
+// const API_KEY = process.env.REACT_APP_API_KEY; // Securely store API key
+
+// const About = () => {
+//   const [breedDescriptions, setBreedDescriptions] = useState([]);
+//   const [selectedBreedIndex, setSelectedBreedIndex] = useState(null);
+
+//   useEffect(() => {
+//     const fetchBreeds = async () => {
+//       try {
+//         const response = await axios.get(`your_api_endpoint`, {
+//           headers: {
+//             Authorization: `Bearer ${API_KEY}`, // Example authorization header
+//           },
+//           // Add any other query parameters required by the API
+//         });
+//         setBreedDescriptions(response.data); // Update state with fetched data
+//       } catch (error) {
+//         console.error('Error fetching breeds:', error);
+//         // Handle errors gracefully (e.g., display an error message to the user)
+//       }
+//     };
+
+//     fetchBreeds();
+//   }, []); // Empty dependency array: fetch breeds only once on component mount
+
+//   const toggleDescription = (index) => {
+//     setSelectedBreedIndex(index === selectedBreedIndex ? null : index); // Toggle visibility
+//   };
+
+//   return (
+//     <div>
+//       <h2>About Us</h2>
+//       <p>Welcome to our site where you can learn about different cat breeds and adopt a cat! Our mission is to find loving homes for all cats.</p>
+
+//       <h1>About the Different Breeds</h1>
+//       <ul>
+//         {breedDescriptions.map((breed, index) => (
+//           <li key={index}>
+//             <h3
+//               className="cat-breed"
+//               onClick={() => toggleDescription(index)}
+//               style={{ cursor: 'pointer' }}
+//             >
+//               {breed.name}
+//             </h3>
+//             {selectedBreedIndex === index && (
+//               <p className="cat-breed">{breed.description}</p>
+//             )}
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+
+// export default About;
